@@ -1,7 +1,7 @@
 import std.stdio;
 import std.string;
 import std.conv;
-
+import std.file : read;
 void horny_execute_chunk(string chunk) {
   int state
     = 7;
@@ -58,8 +58,5 @@ void horny_execute_chunk(string chunk) {
 }
 
 void main(string[] args) {
-  horny_execute_chunk("(1,23)!");
-  horny_execute_chunk("23!");
-  horny_execute_chunk("(\'hello, world\') !");
-  horny_execute_chunk(";comment;\n(1,2)+ (*)!");
+  horny_execute_chunk(to!string(read(args[1])));
 }
