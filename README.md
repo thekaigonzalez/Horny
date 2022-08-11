@@ -70,3 +70,9 @@ A**
 Comment!
 ;
 ```
+
+## Resources
+
+- https://github.com/retronbv/potatoscript
+- https://en.wikipedia.org/wiki/Brainfuck
+- https://en.wikipedia.org/wiki/Stack-oriented_programming
