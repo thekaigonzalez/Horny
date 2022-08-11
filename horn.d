@@ -24,7 +24,7 @@ void horny_execute_chunk(string chunk) {
       }
       writeln(arguments[0]);
       buffer = "";
-      state = 1;
+      state = 7;
       arguments = [];
     } else if (s == '@' && state == 7) {
       stack ~= arguments[0];
@@ -58,5 +58,12 @@ void horny_execute_chunk(string chunk) {
 }
 
 void main(string[] args) {
-  horny_execute_chunk(to!string(read(args[1])));
+  if (args.length == 1) {
+    writeln("Horny REPL (C) Kai Daniel Gonzalez");
+    while (true) {
+      horny_execute_chunk(readln());
+    }
+  } 
+  else
+    horny_execute_chunk(to!string(read(args[1])));
 }
