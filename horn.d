@@ -2,11 +2,17 @@ import std.stdio;
 import std.string;
 import std.conv;
 import std.file : read;
-void horny_execute_chunk(string chunk) {
+
+class hornySession {
+  string[] ses_stack;
+}
+
+void horny_execute_chunk(string chunk, hornySession se){
   int state
     = 7;
   string[] arguments;
-  string[] stack;
+  string[] stack = se.ses_stack;
+  
   string buffer = "";
   int ps = 0;
   foreach (char s; chunk) {
@@ -58,12 +64,14 @@ void horny_execute_chunk(string chunk) {
 }
 
 void main(string[] args) {
+  hornySession toplevel = new hornySession();
   if (args.length == 1) {
     writeln("Horny REPL (C) Kai Daniel Gonzalez");
     while (true) {
-      horny_execute_chunk(readln());
+      horny_execute_chunk(readln(), toplevel);
     }
   } 
-  else
-    horny_execute_chunk(to!string(read(args[1])));
+  else {
+    horny_execute_chunk(to!string(read(args[1])), toplevel);
+  }
 }
